@@ -1,0 +1,20 @@
+Package: socceR
+Title: Probabilistic Models For Soccer Matches
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = c("Gustavo", "H."),
+           family = "Esteves",
+           role = c("aut", "cre"),
+           email = "gesteves@servidor.uepb.edu.br",
+           comment = c(ORCID = "https://orcid.org/0000-0003-1000-2387"))
+Description: This package implments some stochastic models to calculate
+             probabilities from soccer matches. It also can use simulation
+             to calculate probabilities for entire championships.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    gdata,
+    MASS
