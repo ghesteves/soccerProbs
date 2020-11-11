@@ -2,4 +2,5 @@
 
 export(calcCoefSD1)
 export(calcLambdas)
+export(calcMatProb)
 export(crMatrixSD)
