@@ -2,22 +2,24 @@
 % Please edit documentation in R/crMatrixSD.R
 \name{crMatrixSD}
 \alias{crMatrixSD}
-\title{Creat a Data Matrix from a XLS File.}
+\title{Creat Data Matrices and Vectors for SD Method from a Dataframe Containing
+Data Results from Soccer Matches}
 \usage{
-crMatrixSD(xlsFile, ...)
+crMatrixSD(data)
 }
 \arguments{
-\item{xlsFile}{the spreadsheet file name to be loaded.}
-
-\item{...}{additional parameters for read.xls function (gdata package).}
+\item{data}{a data frame containing soccer matches database, where each line
+(observation) represent a soccer match, first variable must be
+Home team, second variable must be number of goals achieved by
+Home team, third variable must be number of gols achieved by
+Visitor team, fourth must be the Visitor team, and the fifth
+must indicate if there was a filed factor in the match (
+represented by 0 for 'no' or 1 for 'yes')}
 }
 \value{
 A list with two vectors: sum and dif; and two matrices: matS and matT.
 }
 \description{
-This function creates a data matrix from a spreadsheet file containing
-soccer matches results.
-}
-\examples{
-
+This function creates data matrices and vectors (for sum and differences)
+from a dataframe containing results of soccer matches.
 }

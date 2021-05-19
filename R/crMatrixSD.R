@@ -1,56 +1,58 @@
-#' Creat a Data Matrix from a XLS File.
+#' Creat Data Matrices and Vectors for SD Method from a Dataframe Containing 
+#' Data Results from Soccer Matches
 #' 
-#' This function creates a data matrix from a spreadsheet file containing 
-#' soccer matches results.
+#' This function creates data matrices and vectors (for sum and differences) 
+#' from a dataframe containing results of soccer matches.
 #'
-#' @param xlsFile the spreadsheet file name to be loaded.
-#' @param ... additional parameters for read.xls function (gdata package).
-#'
+#' @param data a data frame containing soccer matches database, where each line
+#'             (observation) represent a soccer match, first variable must be 
+#'             Home team, second variable must be number of goals achieved by 
+#'             Home team, third variable must be number of gols achieved by 
+#'             Visitor team, fourth must be the Visitor team, and the fifth 
+#'             must indicate if there was a filed factor in the match (
+#'             represented by 0 for 'no' or 1 for 'yes')
+#'    
 #' @return A list with two vectors: sum and dif; and two matrices: matS and matT.
 #' 
 #' @export
 #'
-#' @examples
+# @examples
 #' 
-crMatrixSD <- function(xlsFile, ...) {
- 
-  ## Reading matches information
-  matches <- gdata::read.xls(xlsFile, as.is = TRUE, ...)
-  attach(matches, name = "DF_socceR")
-  on.exit(detach("DF_socceR"))
-  
-  nM <- dim(matches)[1] # Number of matches
+crMatrixSD <- function(data) {
+
+  ## Number of matches
+  nM <- dim(data)[1]
   
   ## Picking teams names in alphabetical order
-  teams = sort(union(Home, Visitor))
+  teams = sort(union(data[,1], data[,4]))
   nT <- length(teams) # Number of teams
 
   ## Calculating goals sum and diference
-  XpY <- X + Y
-  XmY <- X - Y
+  sumG <- data[,2] + data[,3]
+  difG <- data[,2] - data[,3]
   
   ## Creating S matrix
   matS <- matrix(0, nrow = nM, ncol = nT)
   colnames(matS) <- teams
   for (i in 1:nM) {
-    idx <- which(teams %in% matches[i, c(1, 4)])
+    idx <- which(teams %in% data[i, c(1, 4)])
     matS[i, idx] <- 1
   }
-  matS <- cbind(matS, Local)
+  matS <- cbind(matS, data[,5])
   
   ## Creating T matrix
   matT <- matrix(0, nrow = nM, ncol = nT)
   colnames(matT) <- teams
   for (i in 1:nM) {
-    idxM <- which(teams %in% Home[i])
-    idxV <- which(teams %in% Visitor[i])
+    idxM <- which(teams %in% data[i, 1])
+    idxV <- which(teams %in% data[i, 4])
     matT[i, idxM] <- 1
     matT[i, idxV] <- -1
   }
-  matT <- cbind(matT, Local)
+  matT <- cbind(matT, data[, 5])
   
   ## Returning a list
-  res <- list(sum = XpY, dif = XmY, matS = matS, matT = matT)
+  res <- list(sum = sumG, dif = difG, matS = matS, matT = matT)
   return(res)
 
 }

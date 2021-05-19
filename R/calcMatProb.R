@@ -8,7 +8,7 @@
 #' 
 #' @export
 #'
-#' @examples
+# @examples
 #'
 calcMatProb <- function(lambdas, dim.matrix = 11) {
 
@@ -22,13 +22,13 @@ calcMatProb <- function(lambdas, dim.matrix = 11) {
   }
   
   ## Calculating the last column (last element apart)
-  tmp <- dpois(0:(dim.matrix-2), lambdas[2]+lambdas[3]) - 
+  tmp <- stats::dpois(0:(dim.matrix-2), lambdas[2]+lambdas[3]) - 
     apply(result[-dim.matrix, -dim.matrix], 1, sum)
   
   result[1:(dim.matrix-1), dim.matrix] <- tmp
   
   ## Calculating the last line (last element apart)
-  tmp <- dpois(0:(dim.matrix-2), lambdas[1]+lambdas[3]) - 
+  tmp <- stats::dpois(0:(dim.matrix-2), lambdas[1]+lambdas[3]) - 
     apply(result[-dim.matrix, -dim.matrix], 2, sum)
   
   result[dim.matrix, 1:(dim.matrix-1)] <- tmp

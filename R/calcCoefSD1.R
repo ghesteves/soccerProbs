@@ -6,7 +6,7 @@
 #' 
 #' @export
 #'
-#' @examples
+# @examples
 #' 
 calcCoefSD1 <- function(data) {
   

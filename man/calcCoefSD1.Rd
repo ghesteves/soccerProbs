@@ -15,6 +15,3 @@ a three column matrix, with parameters alpha, beta and gamma.
 \description{
 Calculate coefficients for SD1 method.
 }
-\examples{
-
-}

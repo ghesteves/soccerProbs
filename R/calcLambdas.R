@@ -9,7 +9,7 @@
 #' 
 #' @export
 #'
-#' @examples
+# @examples
 #' 
 calcLambdas <- function(coef, home, visitor) {
   

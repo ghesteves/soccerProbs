@@ -20,6 +20,3 @@ for the match.
 \description{
 Calculate a Holgate's Poisson parameters for a soccer match.
 }
-\examples{
-
-}

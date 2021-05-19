@@ -18,6 +18,3 @@ a list with two elements, Probs and Matrix.
 \description{
 Calculate probabilities for a particular soccer match.
 }
-\examples{
-
-}
