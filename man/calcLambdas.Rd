@@ -4,7 +4,7 @@
 \alias{calcLambdas}
 \title{Calculate a Holgate's Poisson parameters for a soccer match.}
 \usage{
-calcLambdas(coef, home, visitor)
+calcLambdas(coef, home, visitor, local = 1)
 }
 \arguments{
 \item{coef}{a three column matrix resulting from calcCoefSD1 function.}
@@ -12,6 +12,9 @@ calcLambdas(coef, home, visitor)
 \item{home}{home team name.}
 
 \item{visitor}{visitor team name.}
+
+\item{local}{indicator for local factor to the match. Must be 0 or 1
+(default).}
 }
 \value{
 a vector of lenght three containing the Holgate's Poisson parameters

@@ -33,16 +33,15 @@ crMatrixSD <- function(data) {
   
   ## Creating S matrix
   matS <- matrix(0, nrow = nM, ncol = nT)
-  colnames(matS) <- teams
   for (i in 1:nM) {
     idx <- which(teams %in% data[i, c(1, 4)])
     matS[i, idx] <- 1
   }
   matS <- cbind(matS, data[,5])
+  colnames(matS) <- c(teams, "Local")
   
   ## Creating T matrix
   matT <- matrix(0, nrow = nM, ncol = nT)
-  colnames(matT) <- teams
   for (i in 1:nM) {
     idxM <- which(teams %in% data[i, 1])
     idxV <- which(teams %in% data[i, 4])
@@ -50,6 +49,7 @@ crMatrixSD <- function(data) {
     matT[i, idxV] <- -1
   }
   matT <- cbind(matT, data[, 5])
+  colnames(matT) <- c(teams, "Local")
   
   ## Returning a list
   res <- list(sum = sumG, dif = difG, matS = matS, matT = matT)
