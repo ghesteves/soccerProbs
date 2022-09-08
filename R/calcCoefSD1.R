@@ -17,9 +17,9 @@ calcCoefSD1 <- function(data) {
   
   ## Solving the inverse of t(data$matS) %*% data$matS
   tmp <- (t(data$matS) %*% data$matS)
-  if (round(det(tmp), 4) != 0)
-    tmp2 <- solve(tmp) %*% t(data$matS)
-  else
+  #if (round(det(tmp), 4) != 0)
+  #  tmp2 <- solve(tmp) %*% t(data$matS)
+  #else
     tmp2 <- MASS::ginv(tmp) %*% t(data$matS)
   
   ## Calculating alpha coefficients
